@@ -11,9 +11,5 @@
         <remove src="fonts/opensans/regular/opensans-400.woff2"/>
         <remove src="fonts/opensans/semibold/opensans-600.woff2"/>
         <remove src="fonts/opensans/bold/opensans-700.woff2"/>
-        <font src="fonts/fontawesome/fontawesome-webfont.woff2" />
-        <font src="fonts/fontawesome/fontawesome-webfont.woff" />
-        <font src="fonts/fontawesome/fontawesome-webfont.ttf" />
-        <remove src="Magento_Theme::css/font-awesome.min.css" />
     </head>
 </page>

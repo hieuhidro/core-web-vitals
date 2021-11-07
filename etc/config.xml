@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <cwv>
+            <general>
+                <enable>1</enable>
+            </general>
+            <html>
+                <enable_minify>1</enable_minify>
+                <lazy_loading_iframe>1</lazy_loading_iframe>
+                <lazy_loading_image>1</lazy_loading_image>
+                <lazy_load_model>1</lazy_load_model>
+            </html>
+            <js>
+                <enable_rocket_loader>1</enable_rocket_loader>
+                <move_to_footer>1</move_to_footer>
+                <minify_inline>1</minify_inline>
+                <owl_loaded>1</owl_loaded>
+                <js_server_push>0</js_server_push>
+            </js>
+            <css>
+                <move_to_footer>1</move_to_footer>
+                <move_footer_files><![CDATA[css/styles-custom.css,
+mage/gallery/gallery.css,
+mage/calendar.css,
+FishPig_WordPress::css/wordpress.css]]></move_footer_files>
+                <minify_inline>1</minify_inline>
+                <defer_files><![CDATA[css/styles-l.css]]></defer_files>
+                <css_server_push>1</css_server_push>
+                <server_push_files><![CDATA[css/styles-l.css,
+css/styles-m.css]]></server_push_files>
+            </css>
+        </cwv>
+        <dev>
+            <js>
+                <minify_files>1</minify_files>
+                <merge_files>1</merge_files>
+            </js>
+            <css>
+                <minify_files>1</minify_files>
+                <merge_css_files>0</merge_css_files>
+            </css>
+            <html>
+                <minify_html>1</minify_html>
+            </html>
+        </dev>
+    </default>
+</config>

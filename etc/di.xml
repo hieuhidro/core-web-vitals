@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Hidro\CoreWebVitals\Service\Asset\PreloadInterface"
+                type="Hidro\CoreWebVitals\Model\Asset\PreloadAsset"/>
+    <preference for="Hidro\CoreWebVitals\Service\Asset\CriticalCssInterface"
+                type="Hidro\CoreWebVitals\Model\Asset\CriticalCss"/>
+    <preference for="Hidro\CoreWebVitals\Service\Asset\FooterCSSInterface" type="Hidro\CoreWebVitals\Model\Html\Modifier\FooterCSS"/>
+    <preference for="Hidro\CoreWebVitals\Service\Asset\DeferCSSInterface" type="\Hidro\CoreWebVitals\Model\Asset\DeferCSS"/>
+    <virtualType name="HTMLMinificationAdapter" type="Hidro\CoreWebVitals\Model\Asset\Adapter\HTML"/>
+    <virtualType name="CWVCssMinificationProcessor" type="Hidro\CoreWebVitals\Model\Asset\Minify">
+        <arguments>
+            <argument name="adapter" xsi:type="object">cssMinificationAdapter</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CWVJsMinificationProcessor" type="Hidro\CoreWebVitals\Model\Asset\Minify">
+        <arguments>
+            <argument name="adapter" xsi:type="object">jsMinificationAdapter</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CWVHTMLMinificationProcessor" type="Hidro\CoreWebVitals\Model\Asset\Minify">
+        <arguments>
+            <argument name="adapter" xsi:type="object">HTMLMinificationAdapter</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hidro\CoreWebVitals\Model\Logger\LoggerVirtualType" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">CoreWebVitalsLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="standard" xsi:type="object">HidroCoreWebVitalsLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="HidroCoreWebVitalsLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/hidro_core_web_vitals.log</argument>
+        </arguments>
+    </virtualType>
+    <type name="Hidro\CoreWebVitals\Model\Html\Modifier\MinInlineCSS">
+        <arguments>
+            <argument name="minification" xsi:type="object">CWVCssMinificationProcessor</argument>
+        </arguments>
+    </type>
+    <type name="Hidro\CoreWebVitals\Model\Html\Modifier\FooterJS">
+        <arguments>
+            <argument name="minification" xsi:type="object">CWVJsMinificationProcessor</argument>
+        </arguments>
+    </type>
+    <type name="Hidro\CoreWebVitals\Model\Html\Modifier\MinHTML">
+        <arguments>
+            <argument name="minification" xsi:type="object">CWVHTMLMinificationProcessor</argument>
+        </arguments>
+    </type>
+    <type name="\Hidro\CoreWebVitals\Model\Html\OutputModifier">
+        <arguments>
+            <argument name="logger" xsi:type="object">Hidro\CoreWebVitals\Model\Logger\LoggerVirtualType</argument>
+            <argument name="isDebug" xsi:type="boolean">false</argument>
+            <argument name="modifiers" xsi:type="array">
+                <item name="OwlLoaded" xsi:type="object" sortOrder="0">Hidro\CoreWebVitals\Model\Html\Modifier\OwlLoaded</item>
+                <item name="FooterCSS" xsi:type="object" sortOrder="10">Hidro\CoreWebVitals\Model\Html\Modifier\FooterCSS</item>
+                <item name="FooterJS" xsi:type="object" sortOrder="15">Hidro\CoreWebVitals\Model\Html\Modifier\FooterJS</item>
+                <item name="LazyLoadImage" xsi:type="object" sortOrder="20">Hidro\CoreWebVitals\Model\Html\Modifier\LazyLoadImage</item>
+                <item name="LazyLoadIframe" xsi:type="object" sortOrder="30">Hidro\CoreWebVitals\Model\Html\Modifier\LazyLoadIframe</item>
+                <item name="MinInlineCSS" xsi:type="object" sortOrder="40">Hidro\CoreWebVitals\Model\Html\Modifier\MinInlineCSS</item>
+                <item name="RocketLoader" xsi:type="object" sortOrder="50">Hidro\CoreWebVitals\Model\Html\Modifier\RocketLoader</item>
+                <item name="MinHTML" xsi:type="object" sortOrder="60">Hidro\CoreWebVitals\Model\Html\Modifier\MinHTML</item>
+                <item name="BackgroundImages" xsi:type="object" sortOrder="1000">Hidro\CoreWebVitals\Model\Html\Modifier\BackgroundImages</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

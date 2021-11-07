@@ -1,0 +1,12 @@
+/* Font face */
+@media only screen and (max-width: 508px) {
+}
+
+@media only screen and (max-width: 767px){
+}
+
+@media only screen and (max-width: 768px) and (min-width: 420px){
+}
+
+@media screen and (min-width: 768px) {
+}

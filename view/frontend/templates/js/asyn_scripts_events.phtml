@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/**
+ * @var $block \Magento\Framework\View\Element\Template
+ *
+ * <script src="Algolia_AlgoliaSearch::internals/common.js"/>
+ *
+ * <script src="Algolia_AlgoliaSearch::instantsearch.js"/>
+ * <script src="Algolia_AlgoliaSearch::autocomplete.js"/>
+ *
+ */
+$fileIds = $block->getFileIds();
+if (!count($fileIds)) {
+    return;
+}
+$scriptFiles = [];
+foreach ($fileIds as $fileId) {
+    $scriptFiles[] = $block->getViewFileUrl($fileId);
+}
+$uniq = uniqid('loadFunction');
+$uniqFunction = $uniq . 'Async';
+$uniqFunctionRun = $uniq . 'Run';
+?>
+<script type="text/javascript">
+    var <?php echo $uniqFunctionRun;?> = false;
+    var <?php echo $uniqFunction;?> = function () {
+        if (!<?php echo $uniqFunctionRun;?>) {
+            initEvents(userActionEvents, <?php echo $uniqFunction;?>, removeEvent);
+            <?php echo $uniqFunctionRun;?> = true;
+            // Create the element
+            [
+                <?php echo '"' . implode('","', $scriptFiles) . '"'; ?>
+            ].forEach(function (src) {
+                (function (src, d) {
+                    var script = d.createElement("script");
+                    script.type = 'text/javascript';
+                    script.async = false;
+                    script.src = src;
+                    d.head.appendChild(script);
+                })(src, document);
+            });
+        }
+    }
+    initEvents(userActionEvents, <?php echo $uniqFunction;?>, !removeEvent);
+</script>

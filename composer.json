@@ -1,0 +1,27 @@
+{
+    "name": "hidro/core-web-vitals",
+    "version": "1.0.1",
+    "description": "Improve Core Web Vital score for Magento 2 website",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "info@solutiontutorials.com",
+            "name": "Hieu Le"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "magento/framework": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Hidro\\CoreWebVitals\\": ""
+        }
+    }
+}

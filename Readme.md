@@ -34,7 +34,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - Make the module available in a composer repository for example:
     - public repository `packagist.org`
     - public github repository as vcs
-- Install the module composer by running `composer require hieuhidro/core-web-vitals`
+- Install the module composer by running `composer require hidro/core-web-vitals`
 - enable the module by running `php bin/magento module:enable Hidro_CoreWebVitals`
 - apply database updates by running `php bin/magento setup:upgrade`
 - Flush the cache by running `php bin/magento cache:flush`

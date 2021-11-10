@@ -92,6 +92,11 @@ class Data extends AbstractHelper
         return array_map('trim', explode(',', $this->getConfig('css/server_push_files')));
     }
 
+    public function getDeferCSSMode()
+    {
+        return $this->getConfig('css/defer_mode');
+    }
+
     public function getDeferCSSFiles()
     {
         return array_map('trim', explode(',', $this->getConfig('css/defer_files')));

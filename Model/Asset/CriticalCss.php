@@ -11,13 +11,13 @@ namespace Hidro\CoreWebVitals\Model\Asset;
 
 use Hidro\CoreWebVitals\Service\Asset\CriticalCssInterface;
 use Hidro\CoreWebVitals\Service\Asset\MinificationInterface;
-use Magento\PageCache\Model\Cache\Type as CacheTypePageCache;
+use Magento\PageCache\Model\Cache\Type as PageCache;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\View\Asset\Repository as AssetRepository;
 
 class CriticalCss implements CriticalCssInterface
 {
-    const CRITICAL_CSS_CACHE_LIFETIME = 2592000;
+    const CRIT_CSS_CACHE_LIFETIME = 2592000;
 
     /**
      * @var CacheInterface
@@ -65,7 +65,7 @@ class CriticalCss implements CriticalCssInterface
                     $this->assetRepo->getStaticViewFileContext()->getBaseUrl(),
                     $content
                 );
-                $this->cache->save($content, $fileName, [CacheTypePageCache::CACHE_TAG],static::CRITICAL_CSS_CACHE_LIFETIME);
+                $this->cache->save($content, $fileName, [PageCache::CACHE_TAG], static::CRIT_CSS_CACHE_LIFETIME);
             } catch (\Exception $e) {
                 //By pass Exception.
                 $content = '';
@@ -105,8 +105,8 @@ class CriticalCss implements CriticalCssInterface
             'cms-index-index' => 'Hidro_CoreWebVitals::css/google_fonts.css',
         ];
         $fileId = self::DEFAULT_CRITICAL_CSS_FILE;
-        foreach ($availableCritical as $class => $_fileId){
-            if(strpos($bodyClass, $class) !== false){
+        foreach ($availableCritical as $class => $_fileId) {
+            if (strpos($bodyClass, $class) !== false) {
                 $fileId = $_fileId;
                 break;
             }

@@ -33,10 +33,9 @@ class ResultPage
      */
     public function afterRenderResult(
         \Magento\Framework\Controller\ResultInterface $subject,
-                                                      $result,
+        $result,
         ResponseInterface                             $response
-    )
-    {
+    ) {
         if ($response instanceof  HttpResponse) {
             $headers = $response->getHeaders();
             $this->assetService->pushPreloadHeader($headers);

@@ -61,7 +61,7 @@ class RocketLoader extends AbstractModifier
         );
 
         //If preg_replace_callback has an error. revert the html
-        if(null !== $_content){
+        if (null !== $_content) {
             $content = $_content;
         }
         return $content;
@@ -94,7 +94,7 @@ class RocketLoader extends AbstractModifier
                 if (!$ignore) {
                     $pattern = $scriptIdentify . '-text/javascript';
                     $_content = preg_replace_callback(
-                        '/^(?!("\'))<script[^>]+type=["\']text\/javascript["\']|<script[^>]+type=["\']application\/javascript["\']/is',
+                        '/^(?!("\'))<script[^>]+type=["\']text\/javascript["\']|<script[^>]+type=["\']application\/javascript["\']/is', //@phpcs ignore
                         function ($scripts) use ($pattern) {
                             $script = $scripts[0];
                             $script = str_replace('text/javascript', $pattern, $script);
@@ -104,7 +104,7 @@ class RocketLoader extends AbstractModifier
                         $content
                     );
                     //If preg_replace_callback has an error. revert the html
-                    if(null !== $_content){
+                    if (null !== $_content) {
                         $content = $_content;
                     }
                     $content = preg_replace('/<script?[\s|\w]>/is', sprintf('<script type="%s">', $pattern), $content);
@@ -117,7 +117,7 @@ class RocketLoader extends AbstractModifier
             $html
         );
         //If preg_replace_callback has an error. revert the html
-        if(null !== $_html){
+        if (null !== $_html) {
             $html = $_html;
         }
         //<script src="" data-cf-settings="-|49" defer=""></script>
@@ -161,7 +161,9 @@ class RocketLoader extends AbstractModifier
     public function getRocketLoaderScript()
     {
         if (!$this->rocketLoaderURL) {
-            $this->rocketLoaderURL = 'https://ajax.cloudflare.com/cdn-cgi/scripts/' . strtotime('first day of ' . date('F Y')) . '/cloudflare-static/rocket-loader.min.js';
+            $this->rocketLoaderURL = 'https://ajax.cloudflare.com/cdn-cgi/scripts/' .
+                strtotime('first day of ' . date('F Y')) .
+                '/cloudflare-static/rocket-loader.min.js';
         }
         return $this->rocketLoaderURL;
     }

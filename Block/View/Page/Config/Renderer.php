@@ -33,8 +33,7 @@ class Renderer extends \Magento\Framework\View\Page\Config\Renderer
         AssetService $assetService,
         FooterCSSInterface $footerCSS,
         ConfigInterface $config
-    )
-    {
+    ) {
         $this->assetService = $assetService;
         $this->footerCSS = $footerCSS;
         $this->config = $config;
@@ -69,9 +68,9 @@ class Renderer extends \Magento\Framework\View\Page\Config\Renderer
             foreach ($assets as $key => $asset) {
                 $type = $this->getAssetContentType($asset);
                 $this->assetService->pushPreloadAsset($key, $asset->getUrl(), $type);
-                if($this->assetService->pushDeferByScript($key, $asset->getUrl(), $attributes)){
+                if ($this->assetService->pushDeferByScript($key, $asset->getUrl(), $attributes)) {
                     $group->remove($key);
-                }else if ($this->footerCSS->canMove($key)) {
+                } elseif ($this->footerCSS->canMove($key)) {
                     $this->footerCSS->registerFile($key, $asset);
                     $group->remove($key);
                 }

@@ -10,6 +10,7 @@
 namespace Hidro\CoreWebVitals\Model\Html\Modifier;
 
 use Hidro\CoreWebVitals\Model\Html\Context;
+use Hidro\CoreWebVitals\Service\Asset\DeferCSSInterface;
 use Hidro\CoreWebVitals\Service\Asset\FooterCSSInterface;
 use Hidro\CoreWebVitals\Service\Asset\PreloadInterface;
 use Magento\Framework\App\ObjectManager;
@@ -18,8 +19,8 @@ use Magento\Framework\View\Asset\AssetInterface;
 class FooterCSS extends AbstractModifier implements FooterCSSInterface
 {
     private static $footerFiles  = [];
-    protected      $state;
-    protected      $allowedFiles = null;
+    protected $state;
+    protected $allowedFiles = null;
 
     public function __construct(
         Context                      $context,
@@ -100,10 +101,19 @@ class FooterCSS extends AbstractModifier implements FooterCSSInterface
         $assets = $this->getFooterAssetFiles();
         if (count($assets)) {
             $assets = $this->mergeAssets($assets);
-            $template = '<link rel="cwv_preload" as="style" type="text/css" media="all" href="%s" />' . "\n";
+            $rel = 'javascript';
+            switch ($this->helper->getDeferCSSMode()) {
+                case DeferCSSInterface::DEFAULT_BROWSER:
+                    $rel = 'preload';
+                    break;
+                case DeferCSSInterface::JAVASCRIPT_PRELOAD:
+                    $rel = 'cwv_preload';
+                    break;
+            }
+            $template = '<link rel="%s" as="style" type="text/css" media="all" href="%s" />' . "\n";
             $moveStyles = '';
             foreach ($assets as $asset) {
-                $moveStyles .= sprintf($template, $asset->getUrl());
+                $moveStyles .= sprintf($template, $rel, $asset->getUrl());
             }
             return str_replace('</body', $moveStyles . '</body', $html);
         }

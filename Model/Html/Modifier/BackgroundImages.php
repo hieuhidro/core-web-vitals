@@ -30,8 +30,8 @@ class BackgroundImages extends AbstractModifier
             function ($matches) {
                 $content = $matches[0];
                 $search = ['>'];
-                if(false !== preg_match('/url\s*?\((.*?)\)/is', $content, $match)) {
-                    if(count($match) > 1) {
+                if (false !== preg_match('/url\s*?\((.*?)\)/is', $content, $match)) {
+                    if (count($match) > 1) {
                         $imageUrl = trim($match[1], '"\'');
                         $replace = [sprintf('><img alt="" src="%s" style="display: none"/>', $imageUrl)];
                         return str_replace($search, $replace, $content);

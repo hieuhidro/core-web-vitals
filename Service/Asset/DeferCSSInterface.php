@@ -10,6 +10,9 @@ namespace Hidro\CoreWebVitals\Service\Asset;
 
 interface DeferCSSInterface
 {
+    const DEFAULT_BROWSER = 1;
+    const JAVASCRIPT_PRELOAD = 2;
+
     /**
      * @param $file
      * @return boolean
@@ -28,5 +31,4 @@ interface DeferCSSInterface
      * @return string
      */
     public function renderDeferFiles();
-
 }

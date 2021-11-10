@@ -44,7 +44,7 @@ class MinHTML extends AbstractModifier
     {
         $_html = $this->minification->minify($html);
         //If preg_replace_callback has an error. revert the html
-        if(null !== $_html){
+        if (null !== $_html) {
             $html = $_html;
         }
         return $html;

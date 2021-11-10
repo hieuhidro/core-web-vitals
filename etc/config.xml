@@ -32,6 +32,7 @@ mage/gallery/gallery.css,
 mage/calendar.css,
 FishPig_WordPress::css/wordpress.css]]></move_footer_files>
                 <minify_inline>1</minify_inline>
+                <defer_mode>1</defer_mode>
                 <defer_files><![CDATA[css/styles-l.css]]></defer_files>
                 <css_server_push>1</css_server_push>
                 <server_push_files><![CDATA[css/styles-l.css,

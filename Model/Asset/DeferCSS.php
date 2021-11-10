@@ -13,10 +13,19 @@ use Hidro\CoreWebVitals\Service\Asset\DeferCSSInterface;
 
 class DeferCSS implements DeferCSSInterface
 {
+    /**
+     * @var \Hidro\CoreWebVitals\Helper\Data
+     */
     protected $helper;
 
+    /**
+     * @var array
+     */
     protected $registeredFiles = [];
 
+    /**
+     * @var array
+     */
     private static $deferFiles = [];
 
     /**
@@ -27,19 +36,31 @@ class DeferCSS implements DeferCSSInterface
     ) {
         $this->helper = $context->getHelper();
         $this->registeredFiles = $this->helper->getDeferCSSFiles();
-
     }
 
+    /**
+     * @param $file
+     * @return bool
+     */
     public function isDefer($file)
     {
-        return in_array($file, $this->registeredFiles);
+        return (!!$this->helper->getDeferCSSMode()) && in_array($file, $this->registeredFiles);
     }
 
-
-    public function cleanFiles(){
+    /**
+     * @return $this
+     */
+    public function cleanFiles()
+    {
         self::$deferFiles = [];
+        return $this;
     }
 
+    /**
+     * @param $url
+     * @param $attribute
+     * @return array|\Hidro\CoreWebVitals\Service\Asset\PreloadInterface
+     */
     public function registerFile($url, $attribute)
     {
         if (!isset(self::$deferFiles[$url])) {
@@ -48,12 +69,24 @@ class DeferCSS implements DeferCSSInterface
         return self::$deferFiles;
     }
 
+    /**
+     * @return string
+     */
     public function renderDeferFiles()
     {
-        $template = '<link rel="cwv_preload" as="style" type="text/css" %s href="%s"  />' . "\n";
+        $rel = 'javascript';
+        switch ($this->helper->getDeferCSSMode()) {
+            case self::DEFAULT_BROWSER:
+                $rel = 'preload';
+                break;
+            case self::JAVASCRIPT_PRELOAD:
+                $rel = 'cwv_preload';
+                break;
+        }
+        $template = '<link rel="%s" as="style" type="text/css" %s href="%s"  />' . "\n";
         $output = '';
         foreach (self::$deferFiles as $url => $attribute) {
-            $output .= sprintf($template, $attribute, $url);
+            $output .= sprintf($template, $rel, $attribute, $url);
         }
         return $output;
     }

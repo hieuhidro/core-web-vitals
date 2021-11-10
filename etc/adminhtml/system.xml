@@ -99,13 +99,30 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Minify Inline CSS.</comment>
                 </field>
-                <field id="move_to_footer" translate="label" type="select" sortOrder="20" showInDefault="1"
+                <field id="defer_mode" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1"  canRestore="1">
+                    <label>Enable Defer CSS</label>
+                    <source_model>Hidro\CoreWebVitals\Model\Model\Config\Source\DeferCSSMode</source_model>
+                    <comment>rel="preload" (default browser) will be removed by mod_pagespeed</comment>
+                </field>
+                <field id="defer_files" translate="label" type="textarea" sortOrder="21" showInDefault="1"
+                       showInWebsite="1"  canRestore="1">
+                    <label>Defer those files by onload</label>
+                    <comment><![CDATA[
+                        Defer non-critical CSS (CSS only):
+                        css/styles-l.css
+                    ]]></comment>
+                    <depends>
+                        <field id="defer_mode" separator=",">1,2</field>
+                    </depends>
+                </field>
+                <field id="move_to_footer" translate="label" type="select" sortOrder="40" showInDefault="1"
                        showInWebsite="1" canRestore="1">
                     <label>Move To Footer</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Move to footer and merge moved files.</comment>
                 </field>
-                <field id="move_footer_files" translate="label" type="textarea" sortOrder="21" showInDefault="1"
+                <field id="move_footer_files" translate="label" type="textarea" sortOrder="41" showInDefault="1"
                        showInWebsite="1"  canRestore="1">
                     <label>List of files</label>
                     <comment><![CDATA[
@@ -119,21 +136,13 @@
                         <field id="move_to_footer">1</field>
                     </depends>
                 </field>
-                <field id="defer_files" translate="label" type="textarea" sortOrder="30" showInDefault="1"
-                       showInWebsite="1"  canRestore="1">
-                    <label>Defer those files by javascript onload</label>
-                    <comment><![CDATA[
-                        Defer non-critical CSS (CSS only):
-                        css/styles-l.css
-                    ]]></comment>
-                </field>
-                <field id="css_server_push" translate="label" type="select" sortOrder="40" showInDefault="1"
+                <field id="css_server_push" translate="label" type="select" sortOrder="50" showInDefault="1"
                        showInWebsite="1" canRestore="1">
                     <label>HTTP/2 Server Push CSS</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Enable Server Push CSS. Varnish cache doesn't support this feature</comment>
                 </field>
-                <field id="server_push_files" translate="label" type="textarea" sortOrder="41" showInDefault="1"
+                <field id="server_push_files" translate="label" type="textarea" sortOrder="51" showInDefault="1"
                        showInWebsite="1"  canRestore="1">
                     <label>List of files</label>
                     <comment><![CDATA[
@@ -147,8 +156,7 @@
                 </field>
             </group>
         </section>
-        <!--<section id="dev" translate="label" type="text" sortOrder="920" showInDefault="1" showInWebsite="1"
-                 >
+        <!--<section id="dev" translate="label" type="text" sortOrder="920" showInDefault="1" showInWebsite="1">
             <label>Rewrite Developer's options</label>
             <tab>cwv</tab>
             <resource>Magento_Config::advanced</resource>

@@ -25,14 +25,13 @@ $uniqFunction = $uniq . 'Async';
 $uniqFunctionRun = $uniq . 'Run';
 ?>
 <script type="text/javascript">
-    var <?php echo $uniqFunctionRun;?> = false;
-    var <?php echo $uniqFunction;?> = function () {
-        if (!<?php echo $uniqFunctionRun;?>) {
-            initEvents(userActionEvents, <?php echo $uniqFunction;?>, removeEvent);
-            <?php echo $uniqFunctionRun;?> = true;
-            // Create the element
+    var <?= /** @noEscape */ $uniqFunctionRun;?> = false;
+    var <?= /** @noEscape */ $uniqFunction;?> = function () {
+        if (!<?= /** @noEscape */ $uniqFunctionRun;?>) {
+            initEvents(userActionEvents, <?= /** @noEscape */ $uniqFunction;?>, removeEvent);
+            <?= /** @noEscape */ $uniqFunctionRun . '  = true;';?>
             [
-                <?php echo '"' . implode('","', $scriptFiles) . '"'; ?>
+                <?= /** @noEscape */ ('"' . implode('","', $scriptFiles) . '"'); ?>
             ].forEach(function (src) {
                 (function (src, d) {
                     var script = d.createElement("script");
@@ -44,5 +43,5 @@ $uniqFunctionRun = $uniq . 'Run';
             });
         }
     }
-    initEvents(userActionEvents, <?php echo $uniqFunction;?>, !removeEvent);
+    initEvents(userActionEvents, <?= /** @noEscape */ $uniqFunction;?>, !removeEvent);
 </script>

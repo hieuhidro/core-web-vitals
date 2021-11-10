@@ -50,7 +50,8 @@ class OutputModifier extends AbstractModifier
         }
     }
 
-    public function isEnabled(){
+    public function isEnabled()
+    {
         return $this->helper->isEnable();
     }
 
@@ -60,22 +61,30 @@ class OutputModifier extends AbstractModifier
      */
     public function modify($html)
     {
+        $totalTime = 0;
         if ($this->isEnabled()) {
             if (strpos($html, '</body') !== false) {
                 foreach ($this->modifiers as $name => $modifier) {
                     if ($modifier instanceof OutputModifierInterface) {
+                        $start_time = microtime(true);
                         if ($modifier->isEnabled()) {
-                            $start_time = microtime(true);
                             $html = $modifier->modify($html);
-                            $end_time = microtime(true);
-                            if ($this->_isDebug) {
-                                // Calculate the script execution time
-                                $execution_time = ($end_time - $start_time);
-                                $this->_logger->info($this->_uniqId . ":" . $name . ": " . $execution_time . " seconds");
-                            }
+                        }
+                        $end_time = microtime(true);
+                        if ($this->_isDebug) {
+                            // Calculate the script execution time
+                            $execution_time = ($end_time - $start_time);
+                            $totalTime += $execution_time;
+                            $this->_logger->info(implode([
+                                $this->_uniqId,
+                                ":" . $name . ": ",
+                                $execution_time, " seconds"]));
                         }
                     }
                 }
+            }
+            if ($this->_isDebug) {
+                $this->_logger->info(implode([$this->_uniqId, ":OutputModifier: ", $totalTime, " seconds"]));
             }
         }
         return $html;

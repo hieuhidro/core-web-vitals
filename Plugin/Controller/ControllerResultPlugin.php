@@ -44,7 +44,7 @@ class ControllerResultPlugin
      */
     public function afterRenderResult(
         \Magento\Framework\Controller\ResultInterface $subject,
-                                                      $result,
+        $result,
         ResponseInterface                             $response
     ) {
         $usePlugin = $this->registry->registry('use_page_cache_plugin');

@@ -7,6 +7,7 @@
  */
 
 namespace Hidro\CoreWebVitals\Model\Html;
+
 use \Hidro\CoreWebVitals\Helper\Data;
 
 class Context

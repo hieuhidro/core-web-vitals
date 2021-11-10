@@ -18,7 +18,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 
 ## - Specifications
 
-- You have to disable merge **css**
+- You have to disable merge **css** if you want to use CSS modifier functions.
 
 ## Installation
 

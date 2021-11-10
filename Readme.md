@@ -2,7 +2,9 @@
 
 #### This modules allows you modify the HTML, Javascript, CSS, update the position, optimize CWV (Core Web Vitals) scores.
 
-## Main Functionalities
+By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)
+
+##- Main Functionalities
 - Minify HTML code.
 - Adding https/2 push.
 - Preload fonts
@@ -10,11 +12,11 @@
 - Move javascript to footer.
 - Adding Rocket-Loader.
 - Defer javascript codes.
-- Defer CSS files by using javascript.
+- Defer/preload CSS files by using javascript/browser preload.
 - Minify inline CSS, Javascript.
 - Active the first item of Owl Carousel first.
 
-## Specifications
+##- Specifications
 
 - You have to disable merge **css**
 
@@ -44,3 +46,6 @@
 - `bin/magento config:set dev/css/merge_css_files 0 -l;`
 - `bin/magento config:set dev/template/minify_html 1 -l;`
 - `bin/magento deploy:mode:set production;`
+
+##- Sample website
+- [https://m2solutiontutorials.freetls.fastly.net](http://m2solutiontutorials.freetls.fastly.net/)

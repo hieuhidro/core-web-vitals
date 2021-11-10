@@ -4,7 +4,7 @@
 
 By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)
 
-##- Main Functionalities
+## - Main Functionalities
 - Minify HTML code.
 - Adding https/2 push.
 - Preload fonts
@@ -16,7 +16,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - Minify inline CSS, Javascript.
 - Active the first item of Owl Carousel first.
 
-##- Specifications
+## - Specifications
 
 - You have to disable merge **css**
 
@@ -47,5 +47,5 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - `bin/magento config:set dev/template/minify_html 1 -l;`
 - `bin/magento deploy:mode:set production;`
 
-##- Sample website
+## - Sample website
 - [https://m2solutiontutorials.freetls.fastly.net](http://m2solutiontutorials.freetls.fastly.net/)

@@ -17,6 +17,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - Move javascript to footer.
 - Adding Rocket-Loader.
 - Defer javascript codes.
+- Defer Google Recaptcha script
 - Defer/preload CSS files by using javascript/browser preload.
 - Minify inline CSS, Javascript.
 - Active the first item of Owl Carousel first.

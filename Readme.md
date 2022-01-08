@@ -50,3 +50,4 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 
 ## - Sample website
 - [https://m2solutiontutorials.freetls.fastly.net](http://m2solutiontutorials.freetls.fastly.net/)
+- Checkout my critical service: https://store.solutiontutorials.com/critical-css-service.html

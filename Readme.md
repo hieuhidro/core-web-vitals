@@ -5,6 +5,10 @@ This modules allows you modify the HTML, Javascript, CSS, update the position, o
 
 By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)
 
+#More packages:
+- Graylog: https://github.com/hieuhidro/magento2-graylog/
+- Checkout my critical service: https://store.solutiontutorials.com/critical-css-service.html
+
 ## - Main Functionalities
 - Minify HTML code.
 - Adding https/2 push.
@@ -47,7 +51,3 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - `bin/magento config:set dev/css/merge_css_files 0 -l;`
 - `bin/magento config:set dev/template/minify_html 1 -l;`
 - `bin/magento deploy:mode:set production;`
-
-## - Sample website
-- [https://m2solutiontutorials.freetls.fastly.net](http://m2solutiontutorials.freetls.fastly.net/)
-- Checkout my critical service: https://store.solutiontutorials.com/critical-css-service.html

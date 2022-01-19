@@ -1,8 +1,13 @@
-# Magento 2 Optimization for Google Insights
 
-#### This modules allows you modify the HTML, Javascript, CSS, update the position, optimize CWV (Core Web Vitals) scores.
+# Magento 2 Core web vitals, optimization for Google Insights
+
+This modules allows you modify the HTML, Javascript, CSS, update the position, optimize CWV (Core Web Vitals) scores.
 
 By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)
+
+#More packages:
+- Graylog: https://github.com/hieuhidro/magento2-graylog/
+- Checkout my critical service: https://store.solutiontutorials.com/critical-css-service.html
 
 ## - Main Functionalities
 - Minify HTML code.
@@ -12,13 +17,14 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - Move javascript to footer.
 - Adding Rocket-Loader.
 - Defer javascript codes.
+- Defer Google Recaptcha script
 - Defer/preload CSS files by using javascript/browser preload.
 - Minify inline CSS, Javascript.
 - Active the first item of Owl Carousel first.
 
 ## - Specifications
 
-- You have to disable merge **css**
+- You have to disable merge **css** if you want to use CSS modifier functions.
 
 ## Installation
 
@@ -34,7 +40,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - Make the module available in a composer repository for example:
     - public repository `packagist.org`
     - public github repository as vcs
-- Install the module composer by running `composer require hieuhidro/core-web-vitals`
+- Install the module composer by running `composer require hidro/core-web-vitals`
 - enable the module by running `php bin/magento module:enable Hidro_CoreWebVitals`
 - apply database updates by running `php bin/magento setup:upgrade`
 - Flush the cache by running `php bin/magento cache:flush`
@@ -46,6 +52,3 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - `bin/magento config:set dev/css/merge_css_files 0 -l;`
 - `bin/magento config:set dev/template/minify_html 1 -l;`
 - `bin/magento deploy:mode:set production;`
-
-## - Sample website
-- [https://m2solutiontutorials.freetls.fastly.net](http://m2solutiontutorials.freetls.fastly.net/)

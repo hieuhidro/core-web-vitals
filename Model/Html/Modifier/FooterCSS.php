@@ -115,7 +115,7 @@ class FooterCSS extends AbstractModifier implements FooterCSSInterface
             foreach ($assets as $asset) {
                 $moveStyles .= sprintf($template, $rel, $asset->getUrl());
             }
-            return str_replace('</body', $moveStyles . '</body', $html);
+            $html = str_replace('</body', $moveStyles . '</body', $html);
         }
         return $html;
     }

@@ -119,14 +119,15 @@ class RocketLoader extends AbstractModifier
         //If preg_replace_callback has an error. revert the html
         if (null !== $_html) {
             $html = $_html;
+            //<script src="" data-cf-settings="-|49" defer=""></script>
+            $rocketLoaderTagHtml = sprintf(
+                '<script src="%s" data-cf-settings="%s-|49" defer=""></script>',
+                static::getRocketLoaderScript(),
+                $scriptIdentify
+            );
+            $html = str_replace('</body', $rocketLoaderTagHtml . '</body', $html);
         }
-        //<script src="" data-cf-settings="-|49" defer=""></script>
-        $rocketLoaderTagHtml = sprintf(
-            '<script src="%s" data-cf-settings="%s-|49" defer=""></script>',
-            static::getRocketLoaderScript(),
-            $scriptIdentify
-        );
-        return str_replace('</body', $rocketLoaderTagHtml . '</body', $html);
+        return $html;
     }
 
     /**

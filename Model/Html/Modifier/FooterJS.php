@@ -81,8 +81,9 @@ class FooterJS extends AbstractModifier
         );
         if (null !== $_html) {
             $html = $_html;
+            $html = str_replace('</body', implode("\n", $script) . "\n</body", $html);
         }
-        return str_replace('</body', implode("\n", $script) . "\n</body", $html);
+        return $html;
     }
 
     /**

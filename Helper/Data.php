@@ -111,4 +111,9 @@ class Data extends AbstractHelper
     {
         return array_map('trim', explode(',', $this->getConfig('js/server_push_files')));
     }
+
+    public function isDeferRecaptcha()
+    {
+        return !!$this->getConfig('js/recaptcha');
+    }
 }

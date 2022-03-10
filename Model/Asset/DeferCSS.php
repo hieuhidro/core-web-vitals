@@ -70,23 +70,29 @@ class DeferCSS implements DeferCSSInterface
     }
 
     /**
+     *
      * @return string
      */
     public function renderDeferFiles()
     {
         $rel = 'javascript';
+        //adding onload to stylesheet.
+        $attributes = [];
         switch ($this->helper->getDeferCSSMode()) {
             case self::DEFAULT_BROWSER:
                 $rel = 'preload';
+                $attributes = [
+                    'onload="this.rel=\'stylesheet\'"'
+                ];
                 break;
             case self::JAVASCRIPT_PRELOAD:
                 $rel = 'cwv_preload';
                 break;
         }
-        $template = '<link rel="%s" as="style" type="text/css" %s href="%s"  />' . "\n";
+        $template = '<link rel="%s" as="style" type="text/css" %s href="%s" %s />' . "\n";
         $output = '';
         foreach (self::$deferFiles as $url => $attribute) {
-            $output .= sprintf($template, $rel, $attribute, $url);
+            $output .= sprintf($template, $rel, $attribute, $url, implode(' ', $attributes));
         }
         return $output;
     }

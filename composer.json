@@ -1,6 +1,6 @@
 {
     "name": "hidro/core-web-vitals",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Improve Core Web Vital score for Magento 2 website",
     "type": "magento2-module",
     "license": "GPL-3.0",

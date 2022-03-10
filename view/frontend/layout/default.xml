@@ -10,7 +10,11 @@
         <referenceContainer name="footer">
             <block class="Magento\Framework\View\Element\Template" name="hidro_global_css_rel_preload"
                    template="Hidro_CoreWebVitals::js/css_rel_preload.phtml"
-                   after="-"/>
+                   after="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Hidro\CoreWebVitals\ViewModel\CoreVital</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

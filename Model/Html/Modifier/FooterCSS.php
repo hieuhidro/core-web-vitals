@@ -102,18 +102,22 @@ class FooterCSS extends AbstractModifier implements FooterCSSInterface
         if (count($assets)) {
             $assets = $this->mergeAssets($assets);
             $rel = 'javascript';
+            $attributes = [];
             switch ($this->helper->getDeferCSSMode()) {
                 case DeferCSSInterface::DEFAULT_BROWSER:
                     $rel = 'preload';
+                    $attributes = [
+                        'onload="this.rel=\'stylesheet\'"'
+                    ];
                     break;
                 case DeferCSSInterface::JAVASCRIPT_PRELOAD:
                     $rel = 'cwv_preload';
                     break;
             }
-            $template = '<link rel="%s" as="style" type="text/css" media="all" href="%s" />' . "\n";
+            $template = '<link rel="%s" as="style" type="text/css" media="all" href="%s" %s />' . "\n";
             $moveStyles = '';
             foreach ($assets as $asset) {
-                $moveStyles .= sprintf($template, $rel, $asset->getUrl());
+                $moveStyles .= sprintf($template, $rel, $asset->getUrl(), implode(' ', $attributes));
             }
             $html = str_replace('</body', $moveStyles . '</body', $html);
         }

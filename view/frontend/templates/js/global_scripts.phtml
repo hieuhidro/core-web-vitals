@@ -3,11 +3,14 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+/** @var Hidro\CoreWebVitals\Helper\Data $helper */
+$helper = $this->helper(\Hidro\CoreWebVitals\Helper\Data::class);
 ?>
 <script data-cfasync="false" type="text/javascript">
-    userActionEvents = ['scroll', 'mousemove', 'touchstart'];
-    removeEvent = true;
-    window.immediateLoad = false;
+    var userActionEvents = ['scroll', 'mousemove', 'touchstart'],
+    window.deferRecaptcha = <?= $helper->isDeferRecaptcha() ? 'true' : 'false';?>;
+
+    removeEvent = true; window.immediateLoad = false;
     window.initEvents = function (events, functionName, removed) {
         if (window.immediateLoad && !removed) {
             functionName.apply(null);
@@ -33,30 +36,17 @@
                         _element.dispatchEvent(elementIEvent);
                     }
                 });
-            }, {rootMargin: '100px', threshold: 0});
+            }, {rootMargin: '50px', threshold: 0});
         }
     })(window);
-    window.IntersectionElement = function (_element) {
+    window.IntersectionElement = function (_element, callBack) {
+        _element.addEventListener('element-intersection', callBack, {passive: false});
         window.elementIntersectionObserver.observe(_element);
     }
-    !(function (w, d) {
-        if ("IntersectionObserver" in w) {
-            w.lazyloadImageAllPage = new IntersectionObserver(function (entries, observer) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        var image = entry.target;
-                        image.src = image.dataset.src;
-                        image.onload = null;
-                        w.lazyloadImageAllPage.unobserve(image);
-                    }
-                });
-            }, d);
-        }
-    })(window, {rootMargin: '100px', threshold: 0});
     window.CWVLazyLoad = function (options, _element) {
         _element.onload = null;
-        (function (element) {
-            window.lazyloadImageAllPage.observe(element);
-        })(_element);
+        IntersectionElement(_element, function () {
+            this.src = this.dataset.src;
+        });
     }
 </script>

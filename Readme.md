@@ -52,3 +52,10 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - `bin/magento config:set dev/css/merge_css_files 0 -l;`
 - `bin/magento config:set dev/template/minify_html 1 -l;`
 - `bin/magento deploy:mode:set production;`
+
+### DEVELOP
+- app/code/Hidro/CoreWebVitals/Model/Asset/CriticalCss.php:109 
+  - Adding a custom critical css for special body class
+- Override default.css for updating entire default critical css
+- Override the core_vital.css for adding special custom css
+- Override fonts.css for updating webfont.

@@ -33,16 +33,20 @@ class CriticalCss implements CriticalCssInterface
      */
     protected $minification;
 
+    protected $availableCritical;
+
     /**
      * @param CacheInterface  $cache
      * @param AssetRepository $assetRepo
      */
     public function __construct(
         CacheInterface  $cache,
-        AssetRepository $assetRepo
+        AssetRepository $assetRepo,
+        $availableCritical = []
     ) {
         $this->cache = $cache;
         $this->assetRepo = $assetRepo;
+        $this->availableCritical = $availableCritical;
     }
 
     /**
@@ -101,14 +105,11 @@ class CriticalCss implements CriticalCssInterface
      */
     public function getCriticalContent($bodyClass)
     {
-        $availableCritical = [
-            'cms-index-index' => 'Hidro_CoreWebVitals::css/google_fonts.css',
-        ];
-        $fileId = self::DEFAULT_CRITICAL_CSS_FILE;
-        foreach ($availableCritical as $class => $_fileId) {
-            if (strpos($bodyClass, $class) !== false) {
-                $fileId = $_fileId;
-                break;
+        $availableCritical = $this->availableCritical;
+        //['cms-index-index' => 'Hidro_CoreWebVitals::core_vital.css']
+        foreach ($availableCritical as $class => $_fileId){
+            if(strpos($bodyClass, $class) !== false){
+                return $this->loadContent($_fileId);
             }
         }
         return '';

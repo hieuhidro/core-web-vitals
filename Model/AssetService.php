@@ -57,11 +57,16 @@ class AssetService
 
         $criticalFront = '<style data-type="criticalCss">' .
             $this->criticalCss->getFontCritical() . '</style>' . PHP_EOL;
+
         $criticalCss = '<style data-type="criticalCss">' .
             $this->criticalCss->getDefaultCritical() . '</style>' . PHP_EOL;
 
+        $criticalBodyClass = '<style data-type="criticalCss">' .
+            $this->criticalCss->getCriticalContent($pageConfig->getElementAttribute('body', 'class')) . '</style>' . PHP_EOL;
+
         $sortedResultGroups['css'] .= $criticalFront;
         $sortedResultGroups['css'] .= $criticalCss;
+        $sortedResultGroups['css'] .= $criticalBodyClass;
 
         foreach ($resultGroups as $key => $value) {
             if (isset($sortedResultGroups[$key])) {

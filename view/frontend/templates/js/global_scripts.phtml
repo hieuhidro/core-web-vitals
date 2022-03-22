@@ -7,7 +7,7 @@
 $helper = $this->helper(\Hidro\CoreWebVitals\Helper\Data::class);
 ?>
 <script data-cfasync="false" type="text/javascript">
-    var userActionEvents = ['scroll', 'mousemove', 'touchstart'],
+    var userActionEvents = ['scroll', 'mousemove', 'touchstart'];
     window.deferRecaptcha = <?= $helper->isDeferRecaptcha() ? 'true' : 'false';?>;
 
     removeEvent = true; window.immediateLoad = false;

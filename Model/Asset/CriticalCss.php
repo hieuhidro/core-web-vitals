@@ -9,6 +9,7 @@
 
 namespace Hidro\CoreWebVitals\Model\Asset;
 
+use Hidro\CoreWebVitals\Model\Html\Context as CoreWebVitalsContext;
 use Hidro\CoreWebVitals\Service\Asset\CriticalCssInterface;
 use Hidro\CoreWebVitals\Service\Asset\MinificationInterface;
 use Magento\PageCache\Model\Cache\Type as PageCache;
@@ -17,6 +18,9 @@ use Magento\Framework\View\Asset\Repository as AssetRepository;
 
 class CriticalCss implements CriticalCssInterface
 {
+    /**
+     * Cache lifetime
+     */
     const CRIT_CSS_CACHE_LIFETIME = 2592000;
 
     /**
@@ -33,17 +37,29 @@ class CriticalCss implements CriticalCssInterface
      */
     protected $minification;
 
+    /**
+     * @var array
+     */
     protected $availableCritical;
 
     /**
-     * @param CacheInterface  $cache
-     * @param AssetRepository $assetRepo
+     * @var \Hidro\CoreWebVitals\Helper\Data
+     */
+    protected $helper;
+
+    /**
+     * @param CoreWebVitalsContext $context
+     * @param CacheInterface       $cache
+     * @param AssetRepository      $assetRepo
+     * @param array                $availableCritical
      */
     public function __construct(
+        CoreWebVitalsContext $context,
         CacheInterface  $cache,
         AssetRepository $assetRepo,
         $availableCritical = []
     ) {
+        $this->helper = $context->getHelper();
         $this->cache = $cache;
         $this->assetRepo = $assetRepo;
         $this->availableCritical = $availableCritical;
@@ -84,9 +100,12 @@ class CriticalCss implements CriticalCssInterface
      */
     public function getDefaultCritical()
     {
-        $defaultCss = $this->loadContent(CriticalCssInterface::DEFAULT_CRITICAL_CSS_FILE);
-        $coreVitalCss = $this->loadContent(CriticalCssInterface::CORE_VITAL_CSS_FILE);
-        return $defaultCss . PHP_EOL . $coreVitalCss;
+        if($this->helper->isEnableCritical()) {
+            $defaultCss = $this->loadContent(CriticalCssInterface::DEFAULT_CRITICAL_CSS_FILE);
+            $coreVitalCss = $this->loadContent(CriticalCssInterface::CORE_VITAL_CSS_FILE);
+            return $defaultCss . PHP_EOL . $coreVitalCss;
+        }
+        return '';
     }
 
     /**
@@ -102,14 +121,17 @@ class CriticalCss implements CriticalCssInterface
     /**
      * @param $bodyClass
      * @return string
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getCriticalContent($bodyClass)
     {
-        $availableCritical = $this->availableCritical;
-        //['cms-index-index' => 'Hidro_CoreWebVitals::core_vital.css']
-        foreach ($availableCritical as $class => $_fileId){
-            if(strpos($bodyClass, $class) !== false){
-                return $this->loadContent($_fileId);
+        if($this->helper->isEnableCritical()) {
+            $availableCritical = $this->availableCritical;
+            //['cms-index-index' => 'Hidro_CoreWebVitals::core_vital.css']
+            foreach ($availableCritical as $class => $_fileId) {
+                if (strpos($bodyClass, $class) !== false) {
+                    return $this->loadContent($_fileId);
+                }
             }
         }
         return '';

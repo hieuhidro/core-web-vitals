@@ -99,6 +99,12 @@
             </group>
             <group id="css" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1">
                 <label>CSS Settings</label>
+                <field id="enable_critical" translate="label comment" type="select" sortOrder="0" showInDefault="1"
+                       showInWebsite="1" canRestore="1">
+                    <label>Critical css</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Load critical CSS Inline.</comment>
+                </field>
                 <field id="minify_inline" translate="label comment" type="select" sortOrder="10" showInDefault="1"
                        showInWebsite="1" canRestore="1">
                     <label>Minify Inline</label>

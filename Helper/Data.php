@@ -97,6 +97,11 @@ class Data extends AbstractHelper
         return $this->getConfig('css/defer_mode');
     }
 
+    public function isEnableCritical()
+    {
+        return $this->getConfig('css/enable_critical');
+    }
+
     public function getDeferCSSFiles()
     {
         return array_map('trim', explode(',', $this->getConfig('css/defer_files')));

@@ -68,6 +68,27 @@ class RocketLoader extends AbstractModifier
     }
 
     /**
+     * @param $content
+     * @param $pattern
+     * @return array|string|string[]|null
+     */
+    protected function formatEmptyTagScript($content, $pattern)
+    {
+        $_content = preg_replace_callback(
+            '/^(?!("\'))<script\s?.*?>/is',
+            function ($script) use ($pattern) {
+                return str_replace('<script ', sprintf('<script type="%s" ', $pattern), $script[0]);
+            },
+            $content
+        );
+        //Revert html to default when preg_replace_callback has had error.
+        if(null !== $_content){
+            $content = $_content;
+        }
+        return $content;
+    }
+
+    /**
      * @param string $html
      * @return string
      */
@@ -110,6 +131,13 @@ class RocketLoader extends AbstractModifier
                     $content = preg_replace('/<script?[\s|\w]>/is', sprintf('<script type="%s">', $pattern), $content);
                     if (strpos($content, 'type=') === false) {
                         $content = $this->formatUnTypeScript($content, $pattern);
+                    }
+
+                    if (strpos($content, 'type=') === false) {
+                        //sample tag script <script data-ommit="true">
+                        // has no src=
+                        // no type=
+                        $content = $this->formatEmptyTagScript($content, $pattern);
                     }
                 }
                 return $content;

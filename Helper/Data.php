@@ -99,7 +99,7 @@ class Data extends AbstractHelper
 
     public function isEnableCritical()
     {
-        return $this->getConfig('css/enable_critical');
+        return !!$this->getConfig('css/enable_critical');
     }
 
     public function getDeferCSSFiles()

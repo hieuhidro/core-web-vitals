@@ -49,8 +49,10 @@ class LazyLoadImage extends AbstractModifier
                 $search = [' src='];
                 switch ($this->helper->isLazyLoadingImage()) {
                     case LazyLoadModel::JAVASCRIPT_LAZY:
-                        $defaultImage  = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-                        $replace = [' onload="window.CWVLazyLoad({}, this);" src="' . ($defaultImage) . '" data-src='];
+                        $defaultImage = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+                        $replace = [' onload="this.onload=null, window.CWVLazyLoad({}, this);"
+                         onerror="this.onerror=null,window.CWVLazyLoad({}, this);" src="' .
+                                    ($defaultImage) . '" data-src='];
                         break;
                     default:
                         $replace = [' loading="lazy" src='];

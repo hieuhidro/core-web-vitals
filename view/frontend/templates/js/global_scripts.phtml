@@ -36,7 +36,7 @@ $helper = $this->helper(\Hidro\CoreWebVitals\Helper\Data::class);
                         _element.dispatchEvent(elementIEvent);
                     }
                 });
-            }, {rootMargin: '50px', threshold: 0});
+            }, {root: null, rootMargin: '50px', threshold: 0});
         }
     })(window);
     window.IntersectionElement = function (_element, callBack) {

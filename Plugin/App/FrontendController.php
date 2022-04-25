@@ -42,7 +42,9 @@ class FrontendController
     ) {
         if ($result instanceof ResponseHttp) {
             $content = $result->getContent();
-            $content = $this->outputModifier->modify($content);
+            if (strpos($content, '</body') !== false) {
+                $content = $this->outputModifier->modify($content);
+            }
             $result->setContent($content);
         }
         return $result;

@@ -51,7 +51,9 @@ class ControllerResultPlugin
         if ($usePlugin) {
             if ($response instanceof ResponseHttp) {
                 $content = $response->getBody();
-                $content = $this->outputModifier->modify($content);
+                if (strpos($content, '</body') !== false) {
+                    $content = $this->outputModifier->modify($content);
+                }
                 $response->setBody($content);
             }
         }

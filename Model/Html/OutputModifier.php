@@ -37,9 +37,9 @@ class OutputModifier extends AbstractModifier
      * @param OutputModifierInterface[] $modifiers
      */
     public function __construct(
-        Context $context,
+        Context         $context,
         LoggerInterface $logger,
-        $modifiers = []
+                        $modifiers = []
     ) {
         parent::__construct($context);
         $this->modifiers = $modifiers;
@@ -63,23 +63,21 @@ class OutputModifier extends AbstractModifier
     {
         $totalTime = 0;
         if ($this->isEnabled()) {
-            if (strpos($html, '</body') !== false) {
-                foreach ($this->modifiers as $name => $modifier) {
-                    if ($modifier instanceof OutputModifierInterface) {
-                        $start_time = microtime(true);
-                        if ($modifier->isEnabled()) {
-                            $html = $modifier->modify($html);
-                        }
-                        $end_time = microtime(true);
-                        if ($this->_isDebug) {
-                            // Calculate the script execution time
-                            $execution_time = ($end_time - $start_time);
-                            $totalTime += $execution_time;
-                            $this->_logger->info(implode([
-                                $this->_uniqId,
-                                ":" . $name . ": ",
-                                $execution_time, " seconds"]));
-                        }
+            foreach ($this->modifiers as $name => $modifier) {
+                if ($modifier instanceof OutputModifierInterface) {
+                    $start_time = microtime(true);
+                    if ($modifier->isEnabled()) {
+                        $html = $modifier->modify($html);
+                    }
+                    $end_time = microtime(true);
+                    if ($this->_isDebug) {
+                        // Calculate the script execution time
+                        $execution_time = ($end_time - $start_time);
+                        $totalTime += $execution_time;
+                        $this->_logger->info(implode([
+                            $this->_uniqId,
+                            ":" . $name . ": ",
+                            $execution_time, " seconds"]));
                     }
                 }
             }

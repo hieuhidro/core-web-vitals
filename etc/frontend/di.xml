@@ -38,4 +38,14 @@
             <argument name="outputModifier" xsi:type="object">Hidro\CoreWebVitals\Model\Html\OutputModifier</argument>
         </arguments>
     </type>
+    <type name="Magento\PageCache\Controller\Block">
+        <plugin name="after_get_cms_block_html_by_ajax"
+                type="Hidro\CoreWebVitals\Plugin\PageCache\FullPageBlock"
+                sortOrder="1000"/>
+    </type>
+    <type name="Hidro\CoreWebVitals\Plugin\PageCache\FullPageBlock">
+        <arguments>
+            <argument name="outputModifier" xsi:type="object">Hidro\CoreWebVitals\Model\Html\OutputModifier</argument>
+        </arguments>
+    </type>
 </config>

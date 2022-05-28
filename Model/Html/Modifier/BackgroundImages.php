@@ -16,7 +16,7 @@ class BackgroundImages extends AbstractModifier
 {
     public function isEnabled()
     {
-        return true; //Always enable this.
+        return false; //Always disable this.
     }
 
     /**
@@ -25,24 +25,30 @@ class BackgroundImages extends AbstractModifier
     public function modify($html)
     {
         //Process <background-image> tag
+        $imageUrls = [];
         $_html = preg_replace_callback(
-            '/background-image\s*?:\s*?url.*?>/is',
-            function ($matches) {
+            '/background-image\s*?:\s*?url.*?([\'\"]\))/is',
+            function ($matches) use (&$imageUrls){
                 $content = $matches[0];
-                $search = ['>'];
                 if (false !== preg_match('/url\s*?\((.*?)\)/is', $content, $match)) {
                     if (count($match) > 1) {
                         $imageUrl = trim($match[1], '"\'');
-                        $replace = [sprintf('><img alt="" src="%s" style="display: none"/>', $imageUrl)];
-                        return str_replace($search, $replace, $content);
+                        if(!in_array($imageUrl, $imageUrls)) {
+                            $imageUrls[] = $imageUrl;
+                        }
                     }
                 }
-                return $content;
+                return $matches[0]; //Won't replace anything.
             },
             $html
         );
-        //If preg_replace_callback has an error. revert the html
-        if (null !== $_html) {
+        if($imageUrls && null !== $_html){
+            $content = '';
+            foreach ($imageUrls as $imageUrl){
+                $content .= sprintf('<link rel="preload" as="image" href="%s" />', $imageUrl);
+            }
+            $search = '<style data-type="criticalCss"';
+            $_html = str_replace($search, $content . $search, $_html);
             $html = $_html;
         }
         return $html;

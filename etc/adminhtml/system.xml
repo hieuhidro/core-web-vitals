@@ -47,6 +47,11 @@
                     <label>Lazy loading Image</label>
                     <source_model>Hidro\CoreWebVitals\Model\Model\Config\Source\LazyLoadModel</source_model>
                 </field>
+<!--                <field id="preload_main_image" translate="label comment" type="select" sortOrder="30" showInDefault="1"-->
+<!--                       showInWebsite="1" canRestore="1">-->
+<!--                    <label>Preload Main Product Image</label>-->
+<!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                </field>-->
             </group>
             <group id="js" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1">
                 <label>JavaScript Settings</label>

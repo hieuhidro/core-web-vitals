@@ -17,12 +17,32 @@ use Hidro\CoreWebVitals\Service\Asset\FooterCSSInterface;
 
 class Renderer extends \Magento\Framework\View\Page\Config\Renderer
 {
+    /**
+     * @var AssetService
+     */
     protected $assetService;
 
+    /**
+     * @var FooterCSSInterface
+     */
     protected $footerCSS;
 
+    /**
+     * @var ConfigInterface
+     */
     protected $config;
 
+    /**
+     * @param Config                                     $pageConfig
+     * @param \Magento\Framework\View\Asset\MergeService $assetMergeService
+     * @param \Magento\Framework\UrlInterface            $urlBuilder
+     * @param \Magento\Framework\Escaper                 $escaper
+     * @param \Magento\Framework\Stdlib\StringUtils      $string
+     * @param \Psr\Log\LoggerInterface                   $logger
+     * @param AssetService                               $assetService
+     * @param FooterCSSInterface                         $footerCSS
+     * @param ConfigInterface                            $config
+     */
     public function __construct(
         Config $pageConfig,
         \Magento\Framework\View\Asset\MergeService $assetMergeService,

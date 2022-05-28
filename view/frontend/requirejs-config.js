@@ -6,7 +6,7 @@ var config = {
     },
     config: {
         mixins: {
-            'MSP_ReCaptcha/js/reCaptcha': {
+            'Magento_ReCaptchaFrontendUi/js/reCaptcha': {
                 'Hidro_CoreWebVitals/js/reCaptcha-mixin': true
             }
         }

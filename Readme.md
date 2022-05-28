@@ -1,6 +1,9 @@
 
 # Magento 2 Core web vitals, optimization for Google Insights
 
+- Version pattern: [Magento Version].x.x
+  - Ex: Version format 2.4.x.x (This pattern for Magento 2.4).
+
 This modules allows you modify the HTML, Javascript, CSS, update the position, optimize CWV (Core Web Vitals) scores.
 
 By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)

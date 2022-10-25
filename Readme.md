@@ -40,6 +40,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 
 ### Type 2: Composer
 
+- https://packagist.org/packages/hidro/core-web-vitals
 - Make the module available in a composer repository for example:
     - public repository `packagist.org`
     - public github repository as vcs

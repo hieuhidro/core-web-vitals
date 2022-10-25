@@ -128,7 +128,7 @@ class RocketLoader extends AbstractModifier
                     if (null !== $_content) {
                         $content = $_content;
                     }
-                    $content = preg_replace('/<script?[\s|\w]>/is', sprintf('<script type="%s">', $pattern), $content);
+                    $content = preg_replace('/^<script?[\s|\w]>/is', sprintf('<script type="%s">', $pattern), $content);
                     if (strpos($content, 'type=') === false) {
                         $content = $this->formatUnTypeScript($content, $pattern);
                     }

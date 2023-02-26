@@ -8,6 +8,11 @@ This modules allows you modify the HTML, Javascript, CSS, update the position, o
 
 By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)
 
+## By me a coffee:
+- https://patreon.com/solutiontutorials
+- https://paypal.me/hidrole 
+
+
 #More packages:
 - Graylog: https://github.com/hieuhidro/magento2-graylog/
 - Checkout my critical service: https://store.solutiontutorials.com/critical-css-service.html

@@ -26,7 +26,8 @@ class LazyLoadImage extends AbstractModifier
     {
         return [
             'facebook.com',
-            'gallery-placeholder__image'
+            'gallery-placeholder__image',
+            'cwv-skip'
         ];
     }
 

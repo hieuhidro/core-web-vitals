@@ -1,13 +1,21 @@
 
 # Magento 2 Core web vitals, optimization for Google Insights
 
+- Version pattern: [Magento Version].x.x
+  - Ex: Version format 2.4.x.x (This pattern for Magento 2.4).
+
 This modules allows you modify the HTML, Javascript, CSS, update the position, optimize CWV (Core Web Vitals) scores.
 
 By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solutiontutorials.com)
 
+## By me a coffee:
+- https://patreon.com/solutiontutorials
+- https://paypal.me/hidrole 
+
+
 #More packages:
 - Graylog: https://github.com/hieuhidro/magento2-graylog/
-- Checkout my critical service: [https://store.solutiontutorials.com/magento-2-core-web-vital-critical-css.html](https://store.solutiontutorials.com/magento-2-core-web-vital-critical-css.html)
+- Checkout my paid version of CWV: https://store.solutiontutorials.com/magento-2-core-web-vital-critical-css.html
 
 ## - Main Functionalities
 - Minify HTML code.
@@ -36,6 +44,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 
 ### Type 2: Composer
 
+- https://packagist.org/packages/hidro/core-web-vitals
 - Make the module available in a composer repository for example:
     - public repository `packagist.org`
     - public github repository as vcs

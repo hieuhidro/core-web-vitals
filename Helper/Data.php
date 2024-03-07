@@ -32,11 +32,6 @@ class Data extends AbstractHelper
         return !!$this->getConfig('general/debug');
     }
 
-    public function isRocketLoader()
-    {
-        return !!$this->getConfig('js/enable_rocket_loader');
-    }
-
     public function isMoveJsToFooter()
     {
         return !!$this->getConfig('js/move_to_footer');

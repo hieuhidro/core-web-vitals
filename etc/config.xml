@@ -19,7 +19,6 @@
                 <lazy_load_model>1</lazy_load_model>
             </html>
             <js>
-                <enable_rocket_loader>1</enable_rocket_loader>
                 <move_to_footer>1</move_to_footer>
                 <minify_inline>1</minify_inline>
                 <owl_loaded>1</owl_loaded>

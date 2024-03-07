@@ -15,7 +15,6 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 - Preload fonts
 - Lazy loading Iframe, Images.
 - Move javascript to footer.
-- Adding Rocket-Loader.
 - Defer javascript codes.
 - Defer Google Recaptcha script
 - Defer/preload CSS files by using javascript/browser preload.

@@ -55,12 +55,6 @@
             </group>
             <group id="js" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1">
                 <label>JavaScript Settings</label>
-                <field id="enable_rocket_loader" translate="label" type="select" sortOrder="10" showInDefault="1"
-                       showInWebsite="1" canRestore="1">
-                    <label>Enable Rocket Loader</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Exclude: data-cfasync="false".</comment>
-                </field>
                 <field id="move_to_footer" translate="label" type="select" sortOrder="20" showInDefault="1"
                        showInWebsite="1" canRestore="1">
                     <label>Move To Footer</label>

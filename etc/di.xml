@@ -68,7 +68,6 @@
                 <item name="LazyLoadImage" xsi:type="object" sortOrder="20">Hidro\CoreWebVitals\Model\Html\Modifier\LazyLoadImage</item>
                 <item name="LazyLoadIframe" xsi:type="object" sortOrder="30">Hidro\CoreWebVitals\Model\Html\Modifier\LazyLoadIframe</item>
                 <item name="MinInlineCSS" xsi:type="object" sortOrder="40">Hidro\CoreWebVitals\Model\Html\Modifier\MinInlineCSS</item>
-                <item name="RocketLoader" xsi:type="object" sortOrder="50">Hidro\CoreWebVitals\Model\Html\Modifier\RocketLoader</item>
                 <item name="MinHTML" xsi:type="object" sortOrder="60">Hidro\CoreWebVitals\Model\Html\Modifier\MinHTML</item>
                 <item name="BackgroundImages" xsi:type="object" sortOrder="1000">Hidro\CoreWebVitals\Model\Html\Modifier\BackgroundImages</item>
             </argument>

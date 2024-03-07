@@ -81,7 +81,7 @@
                        showInWebsite="1" canRestore="1">
                     <label>Defer Google Recaptcha</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Defer init google recaptcha by IntersectionElement. Requires MSP_ReCaptcha</comment>
+                    <comment>Defer init google recaptcha by IntersectionElement. Requires MSP_ReCaptcha/Magento_ReCaptchaFrontendUi</comment>
                 </field>
                 <field id="js_server_push" translate="label" type="select" sortOrder="50" showInDefault="1"
                        showInWebsite="1" canRestore="1">

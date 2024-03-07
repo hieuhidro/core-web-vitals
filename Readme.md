@@ -7,7 +7,7 @@ By: Hidro Le.  Website: [https://www.solutiontutorials.com](https://www.solution
 
 #More packages:
 - Graylog: https://github.com/hieuhidro/magento2-graylog/
-- Checkout my critical service: https://store.solutiontutorials.com/critical-css-service.html
+- Checkout my critical service: [https://store.solutiontutorials.com/magento-2-core-web-vital-critical-css.html](https://store.solutiontutorials.com/magento-2-core-web-vital-critical-css.html)
 
 ## - Main Functionalities
 - Minify HTML code.
